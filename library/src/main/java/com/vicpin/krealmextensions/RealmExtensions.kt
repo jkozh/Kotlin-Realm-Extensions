@@ -49,9 +49,9 @@ val <T : RealmObject> T.allItems: List<T>
  */
 fun <T : RealmObject> T.query(query: (RealmQuery<T>) -> Unit): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).withQuery(query).findAll()
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).withQuery(query).findAll()
+        return it.copyFromRealm(result)
     }
 }
 
@@ -60,9 +60,9 @@ fun <T : RealmObject> T.query(query: (RealmQuery<T>) -> Unit): List<T> {
  */
 fun <T : RealmObject> T.queryAll(): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).findAll()
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).findAll()
+        return it.copyFromRealm(result)
     }
 }
 
@@ -111,9 +111,9 @@ fun <T : RealmObject> T.queryLast(query: (RealmQuery<T>) -> Unit): T? {
  */
 fun <T : RealmObject> T.querySorted(fieldName : String, order : Sort, query: (RealmQuery<T>) -> Unit): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).withQuery(query).findAll().sort(fieldName, order)
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).withQuery(query).findAll().sort(fieldName, order)
+        return it.copyFromRealm(result)
     }
 }
 
@@ -122,9 +122,9 @@ fun <T : RealmObject> T.querySorted(fieldName : String, order : Sort, query: (Re
  */
 fun <T : RealmObject> T.querySorted(fieldName : List<String>, order : List<Sort>, query: (RealmQuery<T>) -> Unit): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).withQuery(query).findAll().sort(fieldName.toTypedArray(), order.toTypedArray())
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).withQuery(query).findAll().sort(fieldName.toTypedArray(), order.toTypedArray())
+        return it.copyFromRealm(result)
     }
 }
 
@@ -133,9 +133,9 @@ fun <T : RealmObject> T.querySorted(fieldName : List<String>, order : List<Sort>
  */
 fun <T : RealmObject> T.querySorted(fieldName : String, order : Sort): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).findAll().sort(fieldName, order)
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).findAll().sort(fieldName, order)
+        return it.copyFromRealm(result)
     }
 }
 
@@ -144,9 +144,9 @@ fun <T : RealmObject> T.querySorted(fieldName : String, order : Sort): List<T> {
  */
 fun <T : RealmObject> T.querySorted(fieldName : List<String>, order : List<Sort>): List<T> {
 
-    Realm.getDefaultInstance().use { realm ->
-        val result = realm.forEntity(this).findAll().sort(fieldName.toTypedArray(), order.toTypedArray())
-        return realm.copyFromRealm(result)
+    Realm.getDefaultInstance().use {
+        val result = it.forEntity(this).findAll().sort(fieldName.toTypedArray(), order.toTypedArray())
+        return it.copyFromRealm(result)
     }
 }
 
