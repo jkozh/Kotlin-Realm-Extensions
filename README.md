@@ -141,6 +141,8 @@ try{
 #### Get entities with conditions: After (Kotlin + extensions)
 ```kotlin
 val events = Event().query { query -> query.equalTo("id",1) }
+// or
+val events = Event().query { it.equalTo("id",1) }
 ```
 
 If you only need the first or last result, you can also use:
@@ -148,6 +150,9 @@ If you only need the first or last result, you can also use:
 ```kotlin
 val first = Event().queryFirst { query -> query.equalTo("id",1) }
 val last = Event().queryLast { query -> query.equalTo("id",1) }
+// or
+val first = Event().queryFirst { it.equalTo("id",1) }
+val last = Event().queryLast { it.equalTo("id",1) }
 ```
 
 #### Get sorted entities
@@ -157,6 +162,8 @@ val sortedEvents = Event().querySorted("name",Sort.DESCENDING)
 
 ```kotlin
 val sortedEvents = Event().querySorted("name",Sort.DESCENDING) { query -> query.equalTo("id",1) }
+// or 
+val sortedEvents = Event().querySorted("name",Sort.DESCENDING) { it.equalTo("id",1) }
 ```
 
 
@@ -195,6 +202,8 @@ try{
 #### Delete with condition: After (Kotlin + extensions)
 ```kotlin
 Event().delete { query -> query.equalTo("id", 1) }
+// or
+Event().delete { it.equalTo("id", 1) }
 ```
 
 
@@ -232,6 +241,8 @@ Observable<List<Event>> obs =  realm.where(Event.class).equalTo("id",1).findAllA
 
 ```kotlin
 val obs = Event().queryAsObservable { query -> query.equalTo("id",1) }
+// or
+val obs = Event().queryAsObservable { it.equalTo("id",1) }
 ```
 
 These kind of observable queries have to be performed on a thread with a looper attached to it. If you perform an observable query on the main thread, it will run on this thread. If you perform the query on a background thread, a new thread with a looper attached will be created for you to perform the query. This thread will be listen for data changes and it will terminate when you call unsubscribe() on your subscription. 
